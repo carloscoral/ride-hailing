@@ -3,6 +3,7 @@ import { RoleModel } from "./role.model";
 
 export interface UserModel {
     id: number;
-    username: string;
+    email: string;
+    payment_source_id: number;
     role: RoleModel;
 }

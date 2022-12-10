@@ -5,8 +5,9 @@ import { User } from 'src/infrastructure/entities/user.entity';
 import { Role } from 'src/infrastructure/entities/role.entity';
 import { Location } from 'src/infrastructure/entities/location.entity';
 import { Ride } from 'src/infrastructure/entities/ride.entity';
+import { Config } from 'src/domain/config/config';
 
-export function getTypeOrmModuleOptions(config: EnvironmentConfigService): TypeOrmModuleOptions {
+export function getTypeOrmModuleOptions(config: Config): TypeOrmModuleOptions {
     return {
         type: 'postgres',
         host: config.getDatabaseHost(),

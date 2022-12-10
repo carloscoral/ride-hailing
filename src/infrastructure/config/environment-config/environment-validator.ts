@@ -24,6 +24,15 @@ class EnvironmentVariables {
 
     @IsBoolean()
     DATABASE_SYNCHRONIZE: boolean;
+
+    @IsString()
+    PAYMENT_HOST: string;
+
+    @IsString()
+    PAYMENT_SOURCE_PATH: string;
+
+    @IsString()
+    PAYMENT_PRIVATE_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {

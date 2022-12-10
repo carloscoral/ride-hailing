@@ -1,4 +1,4 @@
-export interface Logger {
-    log(context: string, message: string): void;
-    error(context: string, message: string): void;
+export abstract class Logger {
+    abstract log(context: string, message: string): void;
+    abstract error(context: string, message: string): void;
 }

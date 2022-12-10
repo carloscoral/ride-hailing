@@ -14,7 +14,10 @@ export class User implements UserModel {
 
     @Index({ unique: true })
     @Column('varchar', { unique: true })
-    username: string;
+    email: string;
+
+    @Column('integer')
+    payment_source_id: number;
 
     @ManyToOne(() => Role, (role) => role.users)
     role: RoleModel;
