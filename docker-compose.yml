@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  ride-hailing-db:
+    image: postgres
+    container_name: ride-hailing-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_DB: ${DATABASE_NAME}
