@@ -16,8 +16,8 @@ export class User implements UserModel {
     @Column('varchar', { unique: true })
     email: string;
 
-    @Column('integer')
-    payment_source_id: number;
+    @Column('integer', { nullable: true })
+    payment_source_id?: number;
 
     @ManyToOne(() => Role, (role) => role.users)
     role: RoleModel;

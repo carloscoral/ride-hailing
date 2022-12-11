@@ -19,7 +19,7 @@ export class PaymentSourceWService extends PaymentSourceAdapter {
             Authorization: 'Bearer ' + this.configService.getPaymentPrivateKey(),
             'Content-Type': 'application/json'
         };
-        const response = await this.httpService.post<{ data: { id: number } }>(url, paymentSource, headers);
-        return response.data.id;
+        const response = await this.httpService.post<{ id: number }>(url, paymentSource, headers);
+        return response.id;
     }
 }

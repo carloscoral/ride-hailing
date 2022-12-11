@@ -2,7 +2,7 @@ import { LocationModel } from "./location.model";
 import { UserModel } from "./user.model";
 
 export interface RideModel {
-    id: number;
+    id?: number;
     rider: UserModel;
     driver: UserModel;
     initialLocation: LocationModel;
