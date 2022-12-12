@@ -11,22 +11,24 @@ export class Ride implements RideModel {
     id: number;
 
     @ManyToOne(() => User, user => user.id)
+    @JoinColumn()
     rider: UserModel;
 
     @ManyToOne(() => User, user => user.id)
+    @JoinColumn()
     driver: UserModel;
 
-    @OneToOne(() => Location, location => location.id)
+    @OneToOne(() => Location, location => location.id, { onDelete: 'CASCADE' })
     @JoinColumn()
     initialLocation: LocationModel;
 
-    @OneToOne(() => Location, location => location.id)
+    @OneToOne(() => Location, location => location.id, { nullable: true, onDelete: 'CASCADE' })
     @JoinColumn()
     finalLocation: LocationModel;
 
     @Column('timestamp')
     startTime: Date;
 
-    @Column('timestamp')
+    @Column('timestamp', { nullable: true })
     endTime: Date;
 }

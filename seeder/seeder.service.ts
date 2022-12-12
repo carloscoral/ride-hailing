@@ -20,7 +20,7 @@ export class SeederService {
     }
 
     seedRoles() {
-        const roles: RoleModel[] = [
+        const roles: Partial<RoleModel>[] = [
             {
                 code: 'RIDER',
                 description: 'Rider role',
@@ -40,7 +40,7 @@ export class SeederService {
     seedUsers(roles: Role[]) {
         const rider = roles.find(role => role.code === 'RIDER');
         const driver = roles.find(role => role.code === 'DRIVER');
-        const users: UserModel[] = [
+        const users: Partial<UserModel>[] = [
             {
                 role: rider,
                 email: 'rider1@mail.com'

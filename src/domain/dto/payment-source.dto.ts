@@ -1,4 +1,4 @@
-export interface PaymentSource {
+export interface PaymentSourceDto {
     customer_email: string;
     type: 'NEQUI' | 'CARD';
     token: string;

@@ -13,7 +13,7 @@ export class RoleSeederService implements Seeder<RoleModel[], Role[]> {
         private readonly roleRepository: Repository<Role>
     ) { }
 
-    async seed(data: RoleModel[]): Promise<Role[]> {
+    async seed(data: Partial<RoleModel>[]): Promise<Role[]> {
         try {
             const result = await this.roleRepository.insert(data);
             return result.raw.map((role, i) => ({

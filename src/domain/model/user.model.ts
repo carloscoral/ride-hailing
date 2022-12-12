@@ -1,9 +1,9 @@
-import { RideModel } from "./ride.model";
+import { PaymentSourceModel } from "./payment-source.model";
 import { RoleModel } from "./role.model";
 
 export interface UserModel {
-    id?: number;
+    id: number;
     email: string;
-    payment_source_id?: number;
+    payment_sources: PaymentSourceModel[];
     role: RoleModel;
 }

@@ -10,7 +10,7 @@ export class HttpService extends HttpAdapter {
     }
 
     async post<T>(url: string, body: any, headers: HttpHeaders): Promise<T> {
-        const response = await axios.post(url, { headers, body });
+        const response = await axios.post(url, body, { headers });
         return response.data;
     }
     

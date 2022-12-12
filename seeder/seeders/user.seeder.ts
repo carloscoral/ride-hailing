@@ -12,7 +12,7 @@ export class UserSeederService implements Seeder<UserModel[], User[]> {
         private readonly userRepository: Repository<User>
     ) { }
 
-    async seed(data: UserModel[]): Promise<User[]> {
+    async seed(data: Partial<UserModel>[]): Promise<User[]> {
         try {
             const result = await this.userRepository.insert(data);
             return result.raw.map((user, i) => ({

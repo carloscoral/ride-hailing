@@ -1,4 +1,4 @@
 export interface HttpException {
-    code: string;
+    code: number;
     message: string;
 }

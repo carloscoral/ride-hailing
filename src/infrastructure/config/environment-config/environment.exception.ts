@@ -1,7 +1,7 @@
 import { BasicException } from "src/domain/exception/basic-exception.interface";
 import { ValidationError } from 'class-validator';
 import { ErrorCode } from "../../constants/error-code.constant";
-import { ErrorMessage } from "../../constants/error-message.constant";
+import { ErrorData } from "../../constants/error-data.constant";
 
 export class EnvironmentException extends Error implements BasicException {
     internalCode: ErrorCode;
@@ -9,10 +9,10 @@ export class EnvironmentException extends Error implements BasicException {
     additionalData: ValidationError[];
     
     constructor(errors: ValidationError[]) {
-        const errorMessage = ErrorMessage[ErrorCode.ENVIRONMENT_ERROR];
-        super(errorMessage);
+        const errorData = ErrorData[ErrorCode.ENVIRONMENT_ERROR];
+        super(errorData.message);
         this.internalCode = ErrorCode.ENVIRONMENT_ERROR;
-        this.internalMessage = errorMessage;
+        this.internalMessage = errorData.message;
         this.additionalData = errors;
     }
 }

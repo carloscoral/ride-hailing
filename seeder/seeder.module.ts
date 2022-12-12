@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Location } from 'src/infrastructure/entities/location.entity';
+import { PaymentSource } from 'src/infrastructure/entities/payment-source.entity';
 import { Ride } from 'src/infrastructure/entities/ride.entity';
 import { Role } from 'src/infrastructure/entities/role.entity';
 import { User } from 'src/infrastructure/entities/user.entity';
@@ -11,7 +12,7 @@ import { RoleSeederService } from './seeders/role.seeder';
 import { UserSeederService } from './seeders/user.seeder';
 
 @Module({
-  imports: [EnvironmentConfigModule, RepositoriesModule, TypeOrmModule.forFeature([Location, Role, User, Ride])],
+  imports: [EnvironmentConfigModule, RepositoriesModule, TypeOrmModule.forFeature([Location, Role, User, Ride, PaymentSource])],
   providers: [SeederService, RoleSeederService, UserSeederService]
 })
 export class SeederModule {}

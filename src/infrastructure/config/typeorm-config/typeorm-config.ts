@@ -6,6 +6,7 @@ import { Role } from 'src/infrastructure/entities/role.entity';
 import { Location } from 'src/infrastructure/entities/location.entity';
 import { Ride } from 'src/infrastructure/entities/ride.entity';
 import { Config } from 'src/domain/config/config';
+import { PaymentSource } from 'src/infrastructure/entities/payment-source.entity';
 
 export function getTypeOrmModuleOptions(config: Config): TypeOrmModuleOptions {
     return {
@@ -19,7 +20,8 @@ export function getTypeOrmModuleOptions(config: Config): TypeOrmModuleOptions {
             Location,
             Role,
             User,
-            Ride
+            Ride,
+            PaymentSource
         ],
         synchronize: config.getDatabaseSync(),
         schema: config.getDatabaseSchema(),

@@ -1,5 +1,5 @@
 export interface LocationModel {
-    id?: number;
+    id: number;
     lat: number;
     lng: number;
 }

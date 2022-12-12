@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { EnvironmentConfigModule } from './infrastructure/config/environment-config/environment-config.module';
-import { RepositoriesModule } from './infrastructure/repositories/repositories.module';
-import { AdaptersModule } from './infrastructure/adapters/adapters.module';
+import { ControllersModule } from './infrastructure/controllers/controllers.module';
 
 @Module({
-  imports: [EnvironmentConfigModule, RepositoriesModule, AdaptersModule],
+  imports: [EnvironmentConfigModule, ControllersModule],
   controllers: [],
   providers: [],
 })
