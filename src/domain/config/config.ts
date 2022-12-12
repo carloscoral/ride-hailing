@@ -12,4 +12,5 @@ export abstract class Config implements DatabaseConfig, PaymentConfig {
     abstract getPaymentHost(): string;
     abstract getPaymentSourcePath(): string;
     abstract getPaymentPrivateKey(): string;
+    abstract getPaymentPath(): string;
 }

@@ -10,11 +10,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const response = ctx.getResponse();
 
         if (exception instanceof BasicHttpException) {
-        return response.status(exception.code).json({
-            code: exception.internalCode,
-            message: exception.internalMessage,
-            data: exception.additionalData
-        });
+            return response.status(exception.code).json({
+                code: exception.internalCode,
+                message: exception.internalMessage,
+                data: exception.additionalData
+            });
         }
 
         return response.status(500).json(exception);

@@ -1,5 +1,7 @@
 import { DateAdapter } from "src/domain/adapters/date.adapter";
+import { GeneratorAdapter } from "src/domain/adapters/generator.adapter";
 import { GeoAdapter } from "src/domain/adapters/geo.adapter";
+import { PaymentSourceAdapter } from "src/domain/adapters/payment-source.adapter";
 import { LocationModel } from "src/domain/model/location.model";
 import { RideModel } from "src/domain/model/ride.model";
 import { RidePort } from "src/domain/ports/ride.port";
@@ -20,7 +22,9 @@ export class RideUsecase extends RidePort {
         private locationRepository: LocationRepository,
         private userRepository: UserRepository,
         private dateAdapter: DateAdapter,
-        private geoAdapter: GeoAdapter
+        private geoAdapter: GeoAdapter,
+        private paymentSource: PaymentSourceAdapter,
+        private generatorAdapter: GeneratorAdapter
     ) {
         super();
     }
@@ -45,7 +49,7 @@ export class RideUsecase extends RidePort {
         });
     }
 
-    async finish(rideId: number, lat: number, lng: number): Promise<RideModel & { total: number }> {
+    async finish(rideId: number, lat: number, lng: number): Promise<RideModel & { total: number, payment: any }> {
         const ride = await this.rideRepository.getOne(rideId);
         if (!ride) {
             throw new BasicHttpException(ErrorCode.RESOURCE_NOT_FOUND, { field: 'rideId', value: rideId });
@@ -61,9 +65,25 @@ export class RideUsecase extends RidePort {
             endTime
         });
         const total = this.getTotalPayment(result);
+        const rider = await this.userRepository.getById(ride.rider.id);
+        const payment = rider.payment_sources.pop();
+        if (!payment) {
+            throw new BasicHttpException(ErrorCode.NO_PAYMENT_METHOD);
+        }
+        const paymentResult = await this.paymentSource.pay({
+            amount_in_cents: total * 100,
+            currency: 'COP',
+            customer_email: rider.email,
+            payment_method: {
+                installments: 1
+            },
+            payment_source_id: payment.payment_source_id,
+            reference: this.generatorAdapter.generateUuid()
+        });
         return {
             ...result,
-            total
+            total,
+            payment: paymentResult
         }
     }
 

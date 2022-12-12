@@ -33,6 +33,9 @@ class EnvironmentVariables {
 
     @IsString()
     PAYMENT_PRIVATE_KEY: string;
+
+    @IsString()
+    PAYMENT_PATH: string;
 }
 
 export function validate(config: Record<string, unknown>) {

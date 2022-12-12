@@ -48,4 +48,8 @@ export class EnvironmentConfigService extends Config {
     getPaymentPrivateKey(): string {
         return this.configService.get<string>('PAYMENT_PRIVATE_KEY');
     }
+
+    getPaymentPath(): string {
+        return this.configService.get<string>('PAYMENT_PATH');
+    }
 }

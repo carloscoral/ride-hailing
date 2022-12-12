@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+seeder
+nest-cli-seed.json

@@ -33,5 +33,9 @@ export const ErrorData: { [key in ErrorCode]: ErrorData } = {
     [ErrorCode.CURRENT_RIDE]: {
         message: 'You have a ride in progress',
         httpStatusCode: 400
+    },
+    [ErrorCode.NO_PAYMENT_METHOD]: {
+        message: 'Rider doesn\'t have payment method',
+        httpStatusCode: 400
     }
 }

@@ -5,5 +5,6 @@ export const enum ErrorCode {
     PAYMENT_W_NOT_AUTHORIZED = 'E_004',
     PAYMENT_TOKEN_ERROR = 'E_005',
     INTERNAL_ERROR = 'E_006',
-    CURRENT_RIDE = 'E_007'
+    CURRENT_RIDE = 'E_007',
+    NO_PAYMENT_METHOD = 'E_008'
 }

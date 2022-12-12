@@ -8,6 +8,8 @@ import { DateService } from './date/date.service';
 import { DateAdapter } from 'src/domain/adapters/date.adapter';
 import { GeoService } from './geo/geo.service';
 import { GeoAdapter } from 'src/domain/adapters/geo.adapter';
+import { GeneratorService } from './generator/generator.service';
+import { GeneratorAdapter } from 'src/domain/adapters/generator.adapter';
 
 @Module({
     imports: [EnvironmentConfigModule],
@@ -27,8 +29,12 @@ import { GeoAdapter } from 'src/domain/adapters/geo.adapter';
         {
             provide: GeoAdapter,
             useClass: GeoService
+        },
+        {
+            provide: GeneratorAdapter,
+            useClass: GeneratorService
         }
     ],
-    exports: [PaymentSourceAdapter, HttpAdapter, DateAdapter, GeoAdapter]
+    exports: [PaymentSourceAdapter, HttpAdapter, DateAdapter, GeoAdapter, GeneratorAdapter]
 })
 export class AdaptersModule {}
