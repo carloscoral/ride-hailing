@@ -1,4 +1,6 @@
 import { Module, DynamicModule } from '@nestjs/common';
+import { DateAdapter } from 'src/domain/adapters/date.adapter';
+import { GeoAdapter } from 'src/domain/adapters/geo.adapter';
 import { PaymentSourceAdapter } from 'src/domain/adapters/payment-source.adapter';
 import { LocationRepository } from 'src/domain/repositories/location.repository';
 import { PaymentSourceRepository } from 'src/domain/repositories/payment-source.repository';
@@ -30,12 +32,14 @@ export class UsecasesProxyModule {
             },
             {
                 provide: UsecasesProxyModule.RIDE_USECASES,
-                inject: [RideRepository, LocationRepository, UserRepository],
+                inject: [RideRepository, LocationRepository, UserRepository, DateAdapter, GeoAdapter],
                 useFactory: (
                     rideRepository: RideRepository,
                     locationRepository: LocationRepository,
-                    userRepository: UserRepository
-                ) => new RideUsecase(rideRepository, locationRepository, userRepository)
+                    userRepository: UserRepository,
+                    dateAdapter: DateAdapter,
+                    geoAdapter: GeoAdapter
+                ) => new RideUsecase(rideRepository, locationRepository, userRepository, dateAdapter, geoAdapter)
             }
         ];
 

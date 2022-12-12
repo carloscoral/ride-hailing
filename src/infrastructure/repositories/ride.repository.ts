@@ -25,14 +25,31 @@ export class RideRepositoryImp extends RideRepository {
             where: {
                 rider: {
                     id: riderId
-                },
-                finalLocation: null
+                }
             },
             relations: {
                 rider: true,
                 finalLocation: true
             }
         });
-        return result[0];
+        return result.find(ride => !ride.finalLocation);
+    }
+
+    getOne(rideId: any): Promise<RideModel> {
+        return this.rideRepository.findOne({
+            where: {
+                id: rideId
+            },
+            relations: {
+                finalLocation: true,
+                initialLocation: true,
+                rider: true,
+                driver: true
+            }
+        });
+    }
+
+    update(ride: RideModel): Promise<RideModel> {
+        return this.rideRepository.save(ride);
     }
 }

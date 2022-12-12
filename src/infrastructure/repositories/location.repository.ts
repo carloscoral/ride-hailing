@@ -14,9 +14,15 @@ export class LocationRepositoryImp extends LocationRepository {
     }
 
     async insertOne(lat: number, lng: number): Promise<LocationModel> {
-        const result = await this.locationRepository.insert({
-            lat, lng
-        });
+        const result = await this.locationRepository
+            .createQueryBuilder()
+            .insert()
+            .into('location')
+            .values(
+                { lat, lng }
+            )
+            .returning(['id', 'lat', 'lng'])
+            .execute();
         return result.raw[0];
     }
 }
